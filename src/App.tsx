@@ -1,10 +1,13 @@
-import { Box, Typography } from "@mui/joy";
+import { Box, CssBaseline, CssVarsProvider, Typography } from "@mui/joy";
 
 function App() {
   return (
-    <Box>
-      <Typography>Hello World</Typography>
-    </Box>
+    <CssVarsProvider defaultMode="system">
+      <CssBaseline />
+      <Box>
+        <Typography>Hello World</Typography>
+      </Box>
+    </CssVarsProvider>
   );
 }
 
