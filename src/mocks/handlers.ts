@@ -1,7 +1,12 @@
-import { http } from "msw";
+import { rest } from "msw";
 
 export const handlers = [
-  http.get("/resource", () => {
-    return new Response("Hello world!");
+  rest.get("/resource", (req, res, ctx) => {
+    return res(
+      ctx.json({
+        firstName: "Hello",
+        lastName: "World",
+      })
+    );
   }),
 ];
