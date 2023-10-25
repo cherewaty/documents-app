@@ -1,12 +1,11 @@
-import { rest } from "msw";
+import { factory, primaryKey } from "@mswjs/data";
 
-export const handlers = [
-  rest.get("/resource", (req, res, ctx) => {
-    return res(
-      ctx.json({
-        firstName: "Hello",
-        lastName: "World",
-      })
-    );
-  }),
-];
+const db = factory({
+  document: {
+    id: primaryKey(String),
+    description: String,
+    total: Number,
+  },
+});
+
+export const handlers = [...db.document.toHandlers("rest")];
