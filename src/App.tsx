@@ -1,12 +1,18 @@
-import { Box, CssBaseline, CssVarsProvider, Typography } from "@mui/joy";
+import { Box, CssBaseline, CssVarsProvider } from "@mui/joy";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Documents } from "./Documents";
+
+const queryClient = new QueryClient();
 
 function App() {
   return (
     <CssVarsProvider defaultMode="system">
       <CssBaseline />
-      <Box>
-        <Typography>Hello World</Typography>
-      </Box>
+      <QueryClientProvider client={queryClient}>
+        <Box>
+          <Documents />
+        </Box>
+      </QueryClientProvider>
     </CssVarsProvider>
   );
 }
