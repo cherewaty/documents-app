@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { Box, Button, Container, Option, Stack, Typography } from "@mui/joy";
 import { Field, Form, Formik } from "formik";
 import { useNavigate } from "react-router-dom";
+import * as Yup from "yup";
 
 import { DocumentType, Role } from "../types";
 import { RoleContext } from "../RoleContext";
@@ -31,9 +32,18 @@ export const DocumentNew = () => {
       <Formik
         initialValues={initialValues}
         onSubmit={async (values) => {
-          const { data } = await create(values);
+          let reviewer = Role.MANAGER;
+          if (values.type === DocumentType.REQUISTION && values.amount > 1000) {
+            reviewer = Role.CEO;
+          }
+
+          const { data } = await create({ ...values, reviewer });
           navigate(`/documents/${data.id}`);
         }}
+        validationSchema={Yup.object().shape({
+          description: Yup.string().required(),
+          amount: Yup.number().moreThan(0),
+        })}
       >
         <Form>
           <Stack spacing={4}>
