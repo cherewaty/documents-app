@@ -1,5 +1,6 @@
 import axios from "axios";
 import { Document } from "./types";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export const api = axios.create({
   baseURL: "/api/",
@@ -23,3 +24,17 @@ export const getDocumentQuery = (documentId: string) => ({
     return data;
   },
 });
+
+export const useUpdateDocumentMutation = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (document: Partial<Document>) => {
+      return api.put(`documents/${document.id}`, document);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["documents"] });
+      queryClient.invalidateQueries({ queryKey: ["document"] });
+    },
+  });
+};

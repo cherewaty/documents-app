@@ -17,7 +17,7 @@ export enum DocumentStatus {
 
 export interface Document {
   id: string;
-  type: string;
+  type: DocumentType;
   description: string;
   amount: number;
   reviewer: Role | null;
