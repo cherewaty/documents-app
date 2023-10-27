@@ -11,6 +11,7 @@ import {
 import { Layout } from "./Layout";
 import { DocumentsIndex } from "./pages/DocumentsIndex";
 import { DocumentShow } from "./pages/DocumentShow";
+import { DocumentNew } from "./pages/DocumentNew";
 
 const queryClient = new QueryClient();
 
@@ -31,6 +32,7 @@ const router = createBrowserRouter(
       />
       <Route path="documents">
         <Route index element={<DocumentsIndex />} />
+        <Route path="new" element={<DocumentNew />} />
         <Route path=":documentId" element={<DocumentShow />} />
       </Route>
     </Route>

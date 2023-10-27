@@ -3,3 +3,23 @@ export enum Role {
   MANAGER,
   CEO,
 }
+
+export enum DocumentType {
+  EXPENSE,
+  REQUISTION,
+}
+
+export enum DocumentStatus {
+  PENDING,
+  APPROVED,
+  REJECTED,
+}
+
+export interface Document {
+  id: string;
+  type: string;
+  description: string;
+  amount: number;
+  reviewer: Role | null;
+  status: DocumentStatus;
+}

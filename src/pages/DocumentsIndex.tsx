@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Box, Button } from "@mui/joy";
+import { Box, Button, List, Typography } from "@mui/joy";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import { getDocumentsQuery } from "../api";
@@ -11,21 +11,24 @@ export const DocumentsIndex = () => {
   const role = useContext(RoleContext);
 
   return (
-    <Box>
-      <ul>
+    <Box sx={{ padding: 4 }}>
+      <Box>
+        <Typography level="h1">Documents</Typography>
+        {role === Role.EMPLOYEE && (
+          <Button component={Link} to="new">
+            New
+          </Button>
+        )}
+      </Box>
+      <List>
         {documents?.map((document) => (
           <li key={document.id}>
             <Link to={`/documents/${document.id}`}>
-              {`$${document.amount} ${document.description}`}
+              {`$${document.amount} ${document.status} ${document.description}`}
             </Link>
           </li>
         ))}
-      </ul>
-      {role === Role.EMPLOYEE && (
-        <Button component={Link} to="new">
-          New document
-        </Button>
-      )}
+      </List>
     </Box>
   );
 };
