@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Box, List, Typography } from "@mui/joy";
+import { Container, List, Typography } from "@mui/joy";
 import { useQuery } from "@tanstack/react-query";
 import { Link as RouterLink } from "react-router-dom";
 import { getDocumentsQuery } from "../api";
@@ -11,7 +11,7 @@ export const DocumentsIndex = () => {
   const role = useContext(RoleContext);
 
   return (
-    <Box sx={{ padding: 4 }}>
+    <Container sx={{ padding: 4 }}>
       <Typography level="h1">Documents</Typography>
       <Typography>Role {Role[role]}</Typography>
 
@@ -24,6 +24,6 @@ export const DocumentsIndex = () => {
           </li>
         ))}
       </List>
-    </Box>
+    </Container>
   );
 };

@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Box, Button, Chip, Stack, Typography } from "@mui/joy";
+import { Box, Button, Chip, Container, Stack, Typography } from "@mui/joy";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import { getDocumentQuery, useUpdateDocumentMutation } from "../api";
@@ -35,7 +35,7 @@ export const DocumentShow = () => {
   };
 
   return (
-    <Box sx={{ padding: 4 }}>
+    <Container sx={{ padding: 4 }}>
       <Box sx={{ marginBottom: 4 }}>
         <Typography level="h1">
           {document?.type === DocumentType.EXPENSE ? "Expense" : "Requisition"}
@@ -68,6 +68,6 @@ export const DocumentShow = () => {
           </Button>
         </Stack>
       )}
-    </Box>
+    </Container>
   );
 };

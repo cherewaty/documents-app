@@ -38,3 +38,16 @@ export const useUpdateDocumentMutation = () => {
     },
   });
 };
+
+export const useCreateDocumentMutation = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (document: Partial<Document>) => {
+      return api.post(`documents`, document);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["documents"] });
+    },
+  });
+};

@@ -1,5 +1,5 @@
 import { ReactNode, useState } from "react";
-import { Box, Container, IconButton, Option, Select, Stack } from "@mui/joy";
+import { Box, IconButton, Option, Select, Stack } from "@mui/joy";
 import HomeIcon from "@mui/icons-material/Home";
 import AddIcon from "@mui/icons-material/Add";
 import { Link as RouterLink } from "react-router-dom";
@@ -45,7 +45,7 @@ export const Layout = ({ children }: LayoutProps) => {
           </Select>
         </Stack>
       </Box>
-      <Container>{children}</Container>
+      <Box>{children}</Box>
     </RoleContext.Provider>
   );
 };
