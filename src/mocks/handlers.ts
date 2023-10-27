@@ -14,4 +14,4 @@ for (let i = 0; i < 10; i++) {
   db.document.create();
 }
 
-export const handlers = [...db.document.toHandlers("rest", "api")];
+export const handlers = [...db.document.toHandlers("rest", "/api")];
