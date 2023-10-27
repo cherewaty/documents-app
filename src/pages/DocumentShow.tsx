@@ -10,7 +10,7 @@ export const DocumentShow = () => {
   const { documentId } = useParams();
   if (!documentId) throw new Error("Not found");
   const { data: document } = useQuery(getDocumentQuery(documentId));
-  const { mutateAsync: update } = useUpdateDocumentMutation();
+  const { mutateAsync: update, isPending } = useUpdateDocumentMutation();
   const role = useContext(RoleContext);
 
   const handleApprove = async () => {
@@ -47,13 +47,23 @@ export const DocumentShow = () => {
       </Box>
       {(role === Role.MANAGER || role === Role.CEO) && (
         <Stack direction="row" spacing={2}>
-          <Button color="success" onClick={handleApprove}>
+          <Button color="success" disabled={isPending} onClick={handleApprove}>
             Approve
           </Button>
-          <Button color="danger" onClick={handleReject} variant="outlined">
+          <Button
+            color="danger"
+            disabled={isPending}
+            onClick={handleReject}
+            variant="outlined"
+          >
             Reject
           </Button>
-          <Button color="neutral" onClick={handleRefer} variant="outlined">
+          <Button
+            color="neutral"
+            disabled={isPending}
+            onClick={handleRefer}
+            variant="outlined"
+          >
             Refer
           </Button>
         </Stack>
