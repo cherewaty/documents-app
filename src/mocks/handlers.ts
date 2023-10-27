@@ -3,7 +3,7 @@ import { factory, primaryKey } from "@mswjs/data";
 
 const db = factory({
   document: {
-    id: primaryKey(faker.datatype.uuid),
+    id: primaryKey(faker.string.uuid),
     type: String,
     description: faker.lorem.sentence,
     amount: faker.finance.amount,
