@@ -25,8 +25,8 @@ export const DocumentNew = () => {
   };
 
   return (
-    <Container sx={{ padding: 4 }}>
-      <Typography level="h1" sx={{ marginBottom: 2 }}>
+    <Container maxWidth="sm" sx={{ padding: 4 }}>
+      <Typography level="h1" sx={{ marginBlockEnd: 2 }}>
         New document
       </Typography>
       <Formik
@@ -60,6 +60,7 @@ export const DocumentNew = () => {
               component={InputControl}
               label="Amount"
               name="amount"
+              startDecorator="$"
               type="number"
             />
             <Box sx={{ justifyContent: "flex-end", display: "flex" }}>

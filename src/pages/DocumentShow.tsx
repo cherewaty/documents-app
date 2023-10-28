@@ -1,10 +1,11 @@
 import { useContext } from "react";
-import { Box, Button, Chip, Container, Stack, Typography } from "@mui/joy";
+import { Button, Container, Stack, Typography } from "@mui/joy";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import { getDocumentQuery, useUpdateDocumentMutation } from "../api";
 import { DocumentStatus, DocumentType, Role } from "../types";
 import { RoleContext } from "../RoleContext";
+import { StatusChip } from "../components/StatusChip";
 
 export const DocumentShow = () => {
   const { documentId } = useParams();
@@ -23,28 +24,23 @@ export const DocumentShow = () => {
     await update({ ...document, reviewer: Role.CEO });
   };
 
-  const getStatus = () => {
-    switch (document?.status) {
-      case DocumentStatus.PENDING:
-        return "Pending";
-      case DocumentStatus.APPROVED:
-        return "Approved";
-      case DocumentStatus.REJECTED:
-        return "Rejected";
-    }
-  };
-
   return (
-    <Container sx={{ padding: 4 }}>
-      <Box sx={{ marginBottom: 4 }}>
+    <Container maxWidth="sm" sx={{ padding: 4 }}>
+      <Stack spacing={2} sx={{ marginBlockEnd: 4 }}>
         <Typography level="h1">
           {document?.type === DocumentType.EXPENSE ? "Expense" : "Requisition"}
         </Typography>
         <Typography>{document?.description}</Typography>
         <Typography>{`$${document?.amount}`}</Typography>
-        <Typography>{`Reviewer: ${document?.reviewer}`}</Typography>
-        <Chip>{getStatus()}</Chip>
-      </Box>
+        {document?.reviewer === Role.CEO && (
+          <Typography>Awaiting review from CEO</Typography>
+        )}
+        {document?.reviewer === Role.MANAGER && (
+          <Typography>Awaiting review from Manager</Typography>
+        )}
+        <StatusChip status={document?.status} />
+      </Stack>
+
       {document?.status === DocumentStatus.PENDING &&
         (role === Role.MANAGER || role === Role.CEO) && (
           <Stack direction="row" spacing={2}>
