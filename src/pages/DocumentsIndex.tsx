@@ -12,7 +12,7 @@ import {
 import { useQuery } from "@tanstack/react-query";
 import { Link as RouterLink } from "react-router-dom";
 import { getDocumentsByRoleQuery } from "../api";
-import { Role } from "../types";
+import { DocumentType, Role } from "../types";
 import { RoleContext } from "../RoleContext";
 import { StatusChip } from "../components/StatusChip";
 
@@ -38,7 +38,7 @@ export const DocumentsIndex = () => {
         <Typography>No documents</Typography>
       )}
 
-      <List>
+      <List sx={{ gap: 2 }}>
         {documents?.map((document) => (
           <ListItem key={document.id}>
             <ListItemButton
@@ -47,16 +47,21 @@ export const DocumentsIndex = () => {
             >
               <ListItemContent sx={{ overflow: "hidden" }}>
                 <Typography
-                  sx={{ textOverflow: "ellipsis", whiteSpace: "nowrap" }}
+                  sx={{
+                    marginBlockEnd: 1,
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    whiteSpace: "nowrap",
+                  }}
                 >
-                  {document.description}
+                  {`${DocumentType[document.type]}: ${document.description}`}
                 </Typography>
+                <StatusChip status={document.status} />
               </ListItemContent>
               <ListItemDecorator>
-                <Stack direction="row" spacing={2} sx={{ paddingInline: 1 }}>
-                  <StatusChip status={document.status} />
-                  <Typography>{`$${document.amount}`}</Typography>
-                </Stack>
+                <Typography
+                  sx={{ paddingInline: 1 }}
+                >{`$${document.amount}`}</Typography>
               </ListItemDecorator>
             </ListItemButton>
           </ListItem>

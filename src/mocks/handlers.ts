@@ -6,7 +6,7 @@ import { DocumentStatus, Role } from "../types";
 const db = factory({
   document: {
     id: primaryKey(faker.string.uuid),
-    type: String,
+    type: Number,
     description: faker.lorem.sentence,
     amount: faker.finance.amount,
     reviewer: nullable(Number),
@@ -14,10 +14,12 @@ const db = factory({
   },
 });
 
+// Create mock data
 for (let i = 0; i < 10; i++) {
   db.document.create({
     reviewer: Role.EMPLOYEE,
     status: DocumentStatus.PENDING,
+    type: faker.helpers.arrayElement([0, 1]),
   });
 }
 

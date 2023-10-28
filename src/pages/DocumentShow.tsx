@@ -27,9 +27,7 @@ export const DocumentShow = () => {
   return (
     <Container maxWidth="sm" sx={{ padding: 4 }}>
       <Stack spacing={2} sx={{ marginBlockEnd: 4 }}>
-        <Typography level="h1">
-          {document?.type === DocumentType.EXPENSE ? "Expense" : "Requisition"}
-        </Typography>
+        <Typography level="h1">{DocumentType[document?.type || 0]}</Typography>
         <Typography>{document?.description}</Typography>
         <Typography>{`$${document?.amount}`}</Typography>
         {document?.reviewer === Role.CEO && (
