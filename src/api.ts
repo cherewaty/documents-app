@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Document } from "./types";
+import { Document, Role } from "./types";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export const api = axios.create({
@@ -9,10 +9,12 @@ export const api = axios.create({
   },
 });
 
-export const getDocumentsQuery = () => ({
-  queryKey: ["documents"],
+export const getDocumentsByRoleQuery = (role?: Role) => ({
+  queryKey: ["documents", role],
   queryFn: async () => {
-    const { data } = await api.get<Document[]>("documents");
+    const { data } = await api.get<Document[]>("documents-by-role", {
+      params: { role },
+    });
     return data;
   },
 });

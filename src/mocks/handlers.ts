@@ -1,5 +1,6 @@
 import { faker } from "@faker-js/faker";
 import { factory, nullable, primaryKey } from "@mswjs/data";
+import { rest } from "msw";
 import { DocumentStatus, Role } from "../types";
 
 const db = factory({
@@ -20,4 +21,24 @@ for (let i = 0; i < 10; i++) {
   });
 }
 
-export const handlers = [...db.document.toHandlers("rest", "/api")];
+export const handlers = [
+  ...db.document.toHandlers("rest", "/api"),
+  rest.get("/api/documents-by-role", async (req, res, ctx) => {
+    const url = new URL(req.url);
+    const role = url.searchParams.get("role");
+
+    if (role === `${Role.EMPLOYEE}`) {
+      return res(ctx.json(db.document.getAll()));
+    }
+
+    return res(
+      ctx.json(
+        db.document.findMany({
+          where: {
+            reviewer: { equals: Number(role) },
+          },
+        })
+      )
+    );
+  }),
+];

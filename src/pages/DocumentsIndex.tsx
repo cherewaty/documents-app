@@ -2,13 +2,13 @@ import { useContext } from "react";
 import { Container, Link, List, Typography } from "@mui/joy";
 import { useQuery } from "@tanstack/react-query";
 import { Link as RouterLink } from "react-router-dom";
-import { getDocumentsQuery } from "../api";
+import { getDocumentsByRoleQuery } from "../api";
 import { Role } from "../types";
 import { RoleContext } from "../RoleContext";
 
 export const DocumentsIndex = () => {
-  const { data: documents } = useQuery(getDocumentsQuery());
   const role = useContext(RoleContext);
+  const { data: documents } = useQuery(getDocumentsByRoleQuery(role));
 
   return (
     <Container sx={{ padding: 4 }}>
