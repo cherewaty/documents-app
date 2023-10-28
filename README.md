@@ -35,7 +35,7 @@ This project uses [Mock Service Worker](https://mswjs.io/) to mock API requests.
 
 ### Network requests
 
-In much the same way Formik provides a standard set of abstractions for form state, `@tanstack/react-query` simplifies network requests. It includes a standard set of computed states for async requests, as well as built-in refreshing behavior when the browser refocuses.
+In much the same way Formik provides a standard set of abstractions for form state, [`@tanstack/react-query`](https://tanstack.com/query/latest/docs/react/overview) simplifies network requests. It includes a standard set of computed states for async requests, as well as built-in refreshing behavior when the browser refocuses.
 
 ### Component library
 
