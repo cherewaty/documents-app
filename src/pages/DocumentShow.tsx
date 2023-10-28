@@ -45,29 +45,35 @@ export const DocumentShow = () => {
         <Typography>{`Reviewer: ${document?.reviewer}`}</Typography>
         <Chip>{getStatus()}</Chip>
       </Box>
-      {(role === Role.MANAGER || role === Role.CEO) && (
-        <Stack direction="row" spacing={2}>
-          <Button color="success" disabled={isPending} onClick={handleApprove}>
-            Approve
-          </Button>
-          <Button
-            color="danger"
-            disabled={isPending}
-            onClick={handleReject}
-            variant="outlined"
-          >
-            Reject
-          </Button>
-          <Button
-            color="neutral"
-            disabled={isPending}
-            onClick={handleRefer}
-            variant="outlined"
-          >
-            Refer
-          </Button>
-        </Stack>
-      )}
+      {document?.status === DocumentStatus.PENDING &&
+        (role === Role.MANAGER || role === Role.CEO) && (
+          <Stack direction="row" spacing={2}>
+            <Button
+              color="success"
+              disabled={isPending}
+              onClick={handleApprove}
+            >
+              Approve
+            </Button>
+            <Button
+              color="danger"
+              disabled={isPending}
+              onClick={handleReject}
+              variant="outlined"
+            >
+              Reject
+            </Button>
+
+            <Button
+              color="neutral"
+              disabled={isPending}
+              onClick={handleRefer}
+              variant="outlined"
+            >
+              Refer
+            </Button>
+          </Stack>
+        )}
     </Container>
   );
 };
