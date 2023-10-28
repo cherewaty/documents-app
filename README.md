@@ -33,7 +33,7 @@ This project uses [Mock Service Worker](https://mswjs.io/) to mock API requests.
 
 [Formik](https://formik.org/) is used for form state management. Forms tend to have the same state shape over and over, so Formik handles that abstraction, with computed states like `isSubmitting`, `isValid`, etc.
 
-## Network requests
+### Network requests
 
 In much the same way Formik provides a standard set of abstractions for form state, `@tanstack/react-query` simplifies network requests. It includes a standard set of computed states for async requests, as well as built-in refreshing behavior when the browser refocuses.
 
