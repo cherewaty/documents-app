@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Container, List, Typography } from "@mui/joy";
+import { Container, Link, List, Typography } from "@mui/joy";
 import { useQuery } from "@tanstack/react-query";
 import { Link as RouterLink } from "react-router-dom";
 import { getDocumentsQuery } from "../api";
@@ -18,9 +18,9 @@ export const DocumentsIndex = () => {
       <List>
         {documents?.map((document) => (
           <li key={document.id}>
-            <RouterLink to={`/documents/${document.id}`}>
+            <Link component={RouterLink} to={`/documents/${document.id}`}>
               {`$${document.amount} ${document.status} ${document.description}`}
-            </RouterLink>
+            </Link>
           </li>
         ))}
       </List>
