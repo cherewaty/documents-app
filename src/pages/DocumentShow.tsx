@@ -24,6 +24,8 @@ export const DocumentShow = () => {
     await update({ ...document, reviewer: Role.CEO });
   };
 
+  if (!document) return <Container maxWidth="sm">Document not found</Container>;
+
   return (
     <Container maxWidth="sm" sx={{ padding: 4 }}>
       <Stack spacing={2} sx={{ marginBlockEnd: 4 }}>
