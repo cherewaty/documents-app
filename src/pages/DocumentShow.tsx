@@ -29,7 +29,9 @@ export const DocumentShow = () => {
       <Stack spacing={2} sx={{ marginBlockEnd: 4 }}>
         <Typography level="h1">{DocumentType[document?.type || 0]}</Typography>
         <Typography>{document?.description}</Typography>
-        <Typography>{`$${document?.amount}`}</Typography>
+        <Typography
+          sx={{ fontWeight: "bold" }}
+        >{`$${document?.amount}`}</Typography>
         {document?.reviewer === Role.CEO && (
           <Typography>Awaiting review from CEO</Typography>
         )}

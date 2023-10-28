@@ -1,12 +1,11 @@
 import { useContext } from "react";
 import {
+  Box,
   Container,
   List,
   ListItem,
   ListItemButton,
   ListItemContent,
-  ListItemDecorator,
-  Stack,
   Typography,
 } from "@mui/joy";
 import { useQuery } from "@tanstack/react-query";
@@ -44,6 +43,11 @@ export const DocumentsIndex = () => {
             <ListItemButton
               component={RouterLink}
               to={`/documents/${document.id}`}
+              sx={{
+                alignItems: "flex-start",
+                display: "flex",
+                justifyContent: "space-between",
+              }}
             >
               <ListItemContent sx={{ overflow: "hidden" }}>
                 <Typography
@@ -58,11 +62,10 @@ export const DocumentsIndex = () => {
                 </Typography>
                 <StatusChip status={document.status} />
               </ListItemContent>
-              <ListItemDecorator>
-                <Typography
-                  sx={{ paddingInline: 1 }}
-                >{`$${document.amount}`}</Typography>
-              </ListItemDecorator>
+
+              <Typography sx={{ fontWeight: "bold" }}>
+                {`$${document.amount}`}
+              </Typography>
             </ListItemButton>
           </ListItem>
         ))}
