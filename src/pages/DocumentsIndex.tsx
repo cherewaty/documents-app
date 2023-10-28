@@ -53,7 +53,7 @@ export const DocumentsIndex = () => {
                 </Typography>
               </ListItemContent>
               <ListItemDecorator>
-                <Stack direction="row" spacing={2}>
+                <Stack direction="row" spacing={2} sx={{ paddingInline: 1 }}>
                   <StatusChip status={document.status} />
                   <Typography>{`$${document.amount}`}</Typography>
                 </Stack>

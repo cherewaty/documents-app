@@ -32,12 +32,7 @@ export const DocumentNew = () => {
       <Formik
         initialValues={initialValues}
         onSubmit={async (values) => {
-          let reviewer = Role.MANAGER;
-          if (values.type === DocumentType.REQUISTION && values.amount > 1000) {
-            reviewer = Role.CEO;
-          }
-
-          const { data } = await create({ ...values, reviewer });
+          const { data } = await create(values);
           navigate(`/documents/${data.id}`);
         }}
         validationSchema={Yup.object().shape({
@@ -49,7 +44,7 @@ export const DocumentNew = () => {
           <Stack spacing={4}>
             <Field component={SelectControl} label="Type" name="type">
               <Option value={DocumentType.EXPENSE}>Expense</Option>
-              <Option value={DocumentType.REQUISTION}>Requisition</Option>
+              <Option value={DocumentType.REQUISITION}>Requisition</Option>
             </Field>
             <Field
               component={InputControl}

@@ -6,7 +6,7 @@ export enum Role {
 
 export enum DocumentType {
   EXPENSE,
-  REQUISTION,
+  REQUISITION,
 }
 
 export enum DocumentStatus {

@@ -42,7 +42,7 @@ export const DocumentShow = () => {
       </Stack>
 
       {document?.status === DocumentStatus.PENDING &&
-        (role === Role.MANAGER || role === Role.CEO) && (
+        document?.reviewer === role && (
           <Stack direction="row" spacing={2}>
             <Button
               color="success"
