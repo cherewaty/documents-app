@@ -13,8 +13,8 @@ This project is primarily intended for use with CodeSandbox, but you can also ru
 ```bash
 git clone
 cd documents-app
-npm install
-npm run dev
+yarn install
+yarn dev
 ```
 
 A `devcontainer` setup is also included for use with VS Code and Docker.
