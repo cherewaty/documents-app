@@ -8,7 +8,7 @@ Bootstrapped with `codesandbox-template-vite-react`.
 
 ## Running locally
 
-This project is primarily intended for use with CodeSandbox, but you can also run it locally with Node.js 20 installed:
+This project is primarily intended for use with CodeSandbox, but you can also run it locally with Node.js 18 installed:
 
 ```bash
 git clone
